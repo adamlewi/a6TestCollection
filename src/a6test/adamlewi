@@ -1,0 +1,62 @@
+package a6test.adamlewi;
+
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+import a6.Region;
+import a6.RegionImpl;
+import a6.NoIntersectionException;
+
+public class A6Tests {
+
+	@Test
+	public void IntersectionTest() {
+		Region r1 = new RegionImpl(6, 6, 9, 9);
+		Region r2 = new RegionImpl(7, 7, 10, 10);
+		Region r3 = new RegionImpl(5, 5, 7, 7);
+		Region r4 = new RegionImpl(9, 9, 10, 10);
+		
+		try {
+			Region intersect1 = r1.intersect(r2);
+			
+			assertEquals(intersect1.getLeft(), 7);
+			assertEquals(intersect1.getTop(), 7);
+			assertEquals(intersect1.getRight(), 9);
+			assertEquals(intersect1.getBottom(), 9);
+		}
+		catch(Exception e) { 
+			fail("No Exception should be thrown");
+		}
+		
+		try {
+			Region intersect2 = r3.intersect(r4);
+			fail("Exception should be thrown");
+		}
+		catch(NoIntersectionException e) {
+		}
+	}
+	
+	@Test
+	public void UnionTest() {
+		Region u1 = new RegionImpl(2, 2, 7, 7);
+		Region u2 = new RegionImpl(8, 8, 12, 12);
+		Region u3 = new RegionImpl(3, 3, 9, 9);
+		Region u4 = new RegionImpl(9, 9, 14, 14);
+
+		Region union1 = u1.union(u2);
+		
+		assertEquals(2, union1.getLeft());
+		assertEquals(2, union1.getTop());
+		assertEquals(12, union1.getRight());
+		assertEquals(12, union1.getBottom());
+		
+		Region union2 = u3.union(u4);
+		
+		assertEquals(3, union2.getLeft());
+		assertEquals(3, union2.getTop());
+		assertEquals(14, union2.getRight());
+		assertEquals(14, union2.getBottom());
+		
+	}
+}
+
