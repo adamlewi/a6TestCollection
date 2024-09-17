@@ -1,18 +1,13 @@
-package a6test.koumi;
+package a6test.georged2;
 
 import a6.*;
 
 public class ROIObserverImpl implements ROIObserver {
 
-	private int _count = 0;
-	
-	
 	@Override
 	public void notify(ObservablePicture picture, Region changed_region) {
-		_count ++;
+		// TODO Auto-generated method stub
+
 	}
 
-	public int getCount() {
-		return _count;
-	}
- }
+}
